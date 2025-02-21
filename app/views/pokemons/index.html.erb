@@ -1,0 +1,49 @@
+<body>
+
+ <div class="head">
+  <%= image_tag "logo.png", alt: "Pikachu" %>
+  <%# <h1>Pokemon List</h1> %>
+ </div> 
+
+<!-- Pokémon 类型筛选下拉菜单 -->
+<div class="filter">
+  <form method="get" action="<%= pokemons_path %>">
+    <label for="type">Filter by Type:</label>
+    <select id="type" name="type">
+      <option value="">-- Select Type --</option>
+      <% @types.each do |type| %>
+        <option value="<%= type %>" <%= 'selected' if params[:type] == type %>><%= type.capitalize %></option>
+      <% end %>
+    </select>
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+<div class="list">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Picture</th>
+      <th>Details</th>
+    </tr>
+    <% @pokemons.each do |pokemon| %>
+      <tr>
+        <td><%= pokemon["name"].capitalize %></td>
+        <td>
+          <% 
+            details = Pokemon.fetch_pokemon_details(pokemon["name"])
+          %>
+          <img src="<%= details["sprites"]["front_default"] %>" alt="<%= pokemon["name"] %>">
+        </td>
+        <td class="link"><%= link_to "View Details>>", pokemon_path(pokemon["name"]) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<footer>
+  <p>By Luchiano Wang :)</p>
+</footer>
+
+</body>
+

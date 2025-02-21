@@ -1,0 +1,39 @@
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <%= stylesheet_link_tag "details", media: "all" %>  <!-- 确保 Rails 加载你的 CSS -->
+</head>
+
+<div class="head">
+  <%= image_tag "logo.png", alt: "Pikachu" %>
+  <%# <h1>Pokemon List</h1> %>
+</div> 
+
+
+<div class="info">
+<p class="link"><%= link_to "<<Back to list", pokemons_path %></p>
+<h1><%= @pokemon["name"].capitalize %></h1>
+<img src="<%= @pokemon["sprites"]["front_default"] %>" alt="<%= @pokemon["name"] %>">
+<p>Height: <%= @pokemon["height"] %></p>
+<p>Weight: <%= @pokemon["weight"] %></p>
+<p>Base Experience: <%= @pokemon["base_experience"] %></p>
+<p>Types: 
+  <%= @pokemon["types"].map { |t| t["type"]["name"].capitalize }.join(", ") %>
+</p>
+
+<table>
+  <tr>
+    <td rowspan="<%= @pokemon["abilities"].size %>">Abilities</td>
+    <% @pokemon["abilities"].each do |ability| %>
+    <td><%= ability["ability"]["name"].capitalize %></td>
+    </tr>
+    <% if ability != @pokemon["abilities"].last %>
+    <tr>
+    <% end %>
+    <% end %>
+</table>
+
+</div>
+
+<footer>
+  <p>By Luchiano Wang :)</p>
+</footer>
