@@ -7,7 +7,7 @@
 
 <!-- Pokémon 类型筛选下拉菜单 -->
 <div class="filter">
-  <form method="get" action="<%= pokemons_path %>">
+  <form method="get" action="<%= pokemons_url %>">
     <label for="type">Filter by Type:</label>
     <select id="type" name="type">
       <option value="">-- Select Type --</option>
@@ -35,7 +35,7 @@
           %>
           <img src="<%= details["sprites"]["front_default"] %>" alt="<%= pokemon["name"] %>">
         </td>
-        <td class="link"><%= link_to "View Details>>", pokemon_path(pokemon["name"]) %></td>
+        <td class="link"><%= link_to "View Details>>", pokemon_url(pokemon["name"]) %></td>
       </tr>
     <% end %>
   </table>
