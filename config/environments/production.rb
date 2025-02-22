@@ -96,31 +96,14 @@ require "active_support/core_ext/integer/time"
 #   Rails.application.routes.default_url_options = { host: 'pokemonforsep759.onrender.com' }
 
 # end
+# config/environments/production.rb
 Rails.application.routes.default_url_options = {
-  host: 'pokemonforsep759.onrender.com',
-  protocol: 'https'
+  host: ENV.fetch('HOST', 'pokemonforsep759.onrender.com'),
+  protocol: ENV.fetch('PROTOCOL', 'https')
 }
 
-
-# config/environments/production.rb
-# config/environments/production.rb
-Rails.application.configure do
-
-  # config/environments/production.rb
-config.action_controller.forgery_protection_origin_check = false
-config.action_controller.default_url_options = { host: 'pokemonforsep759.onrender.com', protocol: 'https' }
-
-# 信任 Render 的反向代理
-config.action_dispatch.trusted_proxies = ActionDispatch::RemoteIp::TRUSTED_PROXIES + [IPAddr.new("0.0.0.0/0"), IPAddr.new("::/0")]
-config.action_dispatch.x_forwarded_host = true
-  # Force SSL in production
-  config.force_ssl = true
-
-  config.action_controller.default_url_options = { host: 'pokemonforsep759.onrender.com', protocol: 'https' }
-  # Ensure hosts are properly set
-  config.hosts << "pokemonforsep759.onrender.com"
-  
-  # Default URL options for generating links (email, etc)
-  config.action_mailer.default_url_options = { host: 'pokemonforsep759.onrender.com', protocol: 'https' }
-end
+config.force_ssl = true
+config.action_dispatch.trusted_proxies = [IPAddr.new("0.0.0.0/0")]
+config.action_controller.default_url_options = { host: ENV['HOST'], protocol: 'https' }
+config.eager_load = true
 
