@@ -100,9 +100,19 @@ Rails.application.routes.default_url_options = {
   host: 'pokemonforsep759.onrender.com',
   protocol: 'https'
 }
+
+
 # config/environments/production.rb
 # config/environments/production.rb
 Rails.application.configure do
+
+  # config/environments/production.rb
+config.action_controller.forgery_protection_origin_check = false
+config.action_controller.default_url_options = { host: 'pokemonforsep759.onrender.com', protocol: 'https' }
+
+# 信任 Render 的反向代理
+config.action_dispatch.trusted_proxies = ActionDispatch::RemoteIp::TRUSTED_PROXIES + [IPAddr.new("0.0.0.0/0"), IPAddr.new("::/0")]
+config.action_dispatch.x_forwarded_host = true
   # Force SSL in production
   config.force_ssl = true
 
