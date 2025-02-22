@@ -93,5 +93,6 @@ Rails.application.configure do
   # config/environments/production.rb
   config.action_mailer.default_url_options = { host: 'pokemonforsep759.onrender.com' }
 
+  Rails.application.routes.default_url_options = { host: 'pokemonforsep759.onrender.com' }
 
 end
