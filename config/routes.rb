@@ -4,4 +4,3 @@ Rails.application.routes.draw do
   get "/pokemons/:name", to: "pokemons#details", as: "pokemon"
 end
 
-root to: 'pokemons#index'  # 设置首页路由
