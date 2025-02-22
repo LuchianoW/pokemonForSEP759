@@ -89,4 +89,7 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
   config.hosts << "pokemonforsep759.onrender.com"
 
+  config.action_controller.default_url_options = { host: 'pokemonforsep759.onrender.com' }
+
+
 end
