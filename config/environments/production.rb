@@ -96,13 +96,17 @@ require "active_support/core_ext/integer/time"
 #   Rails.application.routes.default_url_options = { host: 'pokemonforsep759.onrender.com' }
 
 # end
-
+Rails.application.routes.default_url_options = {
+  host: 'pokemonforsep759.onrender.com',
+  protocol: 'https'
+}
 # config/environments/production.rb
 # config/environments/production.rb
 Rails.application.configure do
   # Force SSL in production
   config.force_ssl = true
 
+  config.action_controller.default_url_options = { host: 'pokemonforsep759.onrender.com', protocol: 'https' }
   # Ensure hosts are properly set
   config.hosts << "pokemonforsep759.onrender.com"
   
