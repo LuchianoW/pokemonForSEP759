@@ -12,4 +12,11 @@ class PokemonsController < ApplicationController
   def details
     @pokemon = Pokemon.fetch_pokemon_details(params[:name])
   end
+
+  def redirect_to_pokemons
+    if request.path == "/"
+      redirect_to pokemons_path
+    end
+  end
+  
 end
